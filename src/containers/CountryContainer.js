@@ -5,6 +5,7 @@ const CountryContainer = () => {
 
     const [countries, setCountries] = useState([]);
     const [visitedCountries, setVisitedCountries] = useState([]);
+    const [filterText, setFilterText] = useState("");
 
     const loadData = async () =>{
         const response = await fetch("https://restcountries.com/v3.1/all");
@@ -27,14 +28,32 @@ const CountryContainer = () => {
       const visitedCountryList = visitedCountries.map((country) => (
         <li className="visited-country" key={country}>{country}</li>
       ));
-    
+
+      const handleFilterTextChange = (event) => {
+        setFilterText(event.target.value);
+      }
+
+      const filteredCountries = countries.filter((country) =>
+      country.name.common.toLowerCase().includes(filterText.toLowerCase())
+      );
+     
     
     return(
         <>
             <h1>Countries</h1>
+            <form>
+            <label>
+                    Filter Countries: 
+                    <input
+                        type="text"
+                        value={filterText}
+                        onChange={handleFilterTextChange}
+                    />
+                </label>
+            </form>
             {countries.length > 0 ? (
             <>
-            <CountryList countries={countries} markAsVisited={markAsVisited} />
+            <CountryList countries={filteredCountries} markAsVisited={markAsVisited} />
             <div className="visited-list">
                 <h2>Visited Countries</h2>
                 <ul>{visitedCountryList}</ul>
@@ -45,5 +64,5 @@ const CountryContainer = () => {
             )}
         </>
     );
-};
+        }
 export default CountryContainer;
