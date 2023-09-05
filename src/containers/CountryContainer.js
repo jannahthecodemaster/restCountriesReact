@@ -9,6 +9,7 @@ const CountryContainer = () => {
     const loadData = async () =>{
         const response = await fetch("https://restcountries.com/v3.1/all");
         const jsonData = await response.json();
+        jsonData.splice(47, 1); //splice Israel!!
         setCountries(jsonData);
     }
 
