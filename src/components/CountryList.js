@@ -1,11 +1,12 @@
 import Country from "./Country"
 
+
 const CountryList = ({countries, markAsVisited}) => {
 
     const mappedCountries = countries.map(country => {
         return <li>
             <Country country={country} key={country.id}/>
-            <button onClick={() => markAsVisited(country.name.common)}>
+            <button className="mark-visited-button" onClick={() => markAsVisited(country.name.common)}>
               Mark as Visited
             </button>
             </li>

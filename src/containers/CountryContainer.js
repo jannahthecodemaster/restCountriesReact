@@ -25,7 +25,7 @@ const CountryContainer = () => {
       };
     
       const visitedCountryList = visitedCountries.map((country) => (
-        <li key={country}>{country}</li>
+        <li className="visited-country" key={country}>{country}</li>
       ));
     
     
@@ -35,7 +35,7 @@ const CountryContainer = () => {
             {countries.length > 0 ? (
             <>
             <CountryList countries={countries} markAsVisited={markAsVisited} />
-            <div>
+            <div className="visited-list">
                 <h2>Visited Countries</h2>
                 <ul>{visitedCountryList}</ul>
             </div>
